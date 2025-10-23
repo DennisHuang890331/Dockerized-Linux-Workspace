@@ -77,19 +77,26 @@ docker build -t ubuntu2204:dev .
 
 ## Step 5: Run the Docker Container
 
-Use this command to start a container with GPU and a persistent home directory:
+Use this command to start a container with full hardware access (GPU + USB + Serial) and a persistent home directory:
 
 ```powershell
-docker run -it --name ubuntu2204 --gpus all -v ubuntu2204:/home/$USERNAME ubuntu2204:dev
-```
+docker run -it --privileged --name ubuntu2204 --hostname ubuntu-dev --gpus all --device /dev:/dev -v ubuntu2204:/home/$USERNAME ubuntu2204:dev
+````
 
-- `--gpus all` enables optional GPU support
-- `-v ubuntu2204:/home/$USERNAME` attaches the persistent volume
-- Change `/home/$USERNAME` if you used a different username
-
+* `--privileged` enables full hardware access inside Docker
+* `--device /dev:/dev` allows USB devices and sensors (e.g. RealSense, serial, LiDAR)
+* `--gpus all` enables NVIDIA GPU support
+* `-v ubuntu2204:/home/$USERNAME` mounts persistent user data
+- **Remember to change your username**
 ---
 
-## Step 6: Restart the Environment
+## Step 6: Initilize your working space
+Remember update & upgrade your environment when first login.
+```bash
+sudo apt update && sudo apt upgrade
+```
+
+## Step 7: Restart the Environment
 
 To re-enter the container later:
 
