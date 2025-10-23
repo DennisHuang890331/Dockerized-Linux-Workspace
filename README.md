@@ -90,7 +90,7 @@ docker run -it --privileged --name ubuntu2204 --hostname ubuntu-dev --gpus all -
 * `--device /dev:/dev` allows USB devices and sensors (e.g. RealSense, serial, LiDAR)
 * `--gpus all` enables NVIDIA GPU support
 * `-v ubuntu2204:/home/$USERNAME` mounts persistent user data
-- **Remember to change your [$USERNAME](https://github.com/NTU-iEV-M-Lab/Dockerized-Linux-Workspace/blob/main/Dockerfile#L33)**
+- **Remember to change your [$USERNAME](https://github.com/NTU-iEV-M-Lab/Dockerized-Linux-Workspace/blob/main/Dockerfile#L23)**
 
 ---
 
