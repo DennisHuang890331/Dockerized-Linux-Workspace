@@ -62,6 +62,9 @@ You may modify these values to customize your default user. The Dockerfile autom
 - Enables sudo with password
 - Sets Bash shell with `.bashrc`
 - Applies Asia/Taipei timezone
+- GUI seeting with x11
+
+**Note! User should install [x410](https://www.microsoft.com/store/productId/9PM8LP83G3L3?ocid=libraryshare) in Microsoft store.**
 
 ---
 
@@ -80,14 +83,15 @@ docker build -t ubuntu2204:dev .
 Use this command to start a container with full hardware access (GPU + USB + Serial) and a persistent home directory:
 
 ```powershell
-docker run -it --privileged --name ubuntu2204 --hostname ubuntu-dev --gpus all --device /dev:/dev -v ubuntu2204:/home/$USERNAME ubuntu2204:dev
+docker run -it --privileged --name ubuntu2204 --hostname ubuntu-dev --gpus all --device /dev:/dev -e DISPLAY=host.docker.internal:0.0 -e QT_XCB_FORCE_SOFTWARE_OPENGL=1 -v ubuntu2204:/home/$USERNAME ubuntu2204:dev
 ````
 
 * `--privileged` enables full hardware access inside Docker
 * `--device /dev:/dev` allows USB devices and sensors (e.g. RealSense, serial, LiDAR)
 * `--gpus all` enables NVIDIA GPU support
 * `-v ubuntu2204:/home/$USERNAME` mounts persistent user data
-- **Remember to change your username**
+- **Remember to change your [$USERNAME](https://github.com/NTU-iEV-M-Lab/Dockerized-Linux-Workspace/blob/main/Dockerfile#L33)**
+
 ---
 
 ## Step 6: Initilize your working space
