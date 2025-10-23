@@ -39,7 +39,7 @@ docker volume create --name ubuntu2204 --opt type=none --opt device='D:\ubuntu22
 
 ---
 
-#### Step 2 ??Build the image
+#### Step 2: Build the image
 The Dockerfile will perform the following automatically:
 
 * creates the user and home directory
@@ -65,7 +65,7 @@ docker build -t ubuntu2204 --build-arg USERNAME=$DESIRED_USERNAME .
 
 ---
 
-###### Step 3: Run the Docker Container
+#### Step 3: Run the Docker Container
 
 Use this command to start a container with full hardware access (GPU + USB + Serial) and a persistent home directory:
 
